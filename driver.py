@@ -1,7 +1,10 @@
 from member import Member
+from hashtable import MemberHashTable
 
 class ApplicationDriver:
-  
+  def __init__(self):
+    self.memberMap = MemberHashTable()
+
   def readInputFile(self):
     inputFile = open("inputPS8.txt", "r")
     count = 0
@@ -10,8 +13,7 @@ class ApplicationDriver:
       count+= 1;
       newMember = Member(memberDataList[0].strip(),memberDataList[1].strip(),memberDataList[2].strip(),memberDataList[3].strip())
       
-      print(newMember.name)
-      print(newMember.status)
+      self.memberMap.insertAppDetails(newMember)
     
     inputFile.close()
 
