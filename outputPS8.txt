@@ -1,1 +1,2 @@
 Successfully inserted 5 applications into the system.
+Updating details of Deepak Prasad.Status has been changed.

@@ -3,7 +3,7 @@ class MemberHashTable:
     self.map = dict()
   
   def hashId(self, str):
-    return 10
+    return len(str)
 
   def initializeHash(self):
     self.map=[None]
@@ -30,6 +30,16 @@ class MemberHashTable:
 
   def print(self):
     print(self.map)
+
+  def getAppDetails(self,name):
+    key = name
+    hashKey = self.hashId(key)
+    bucket = self.map.get(hashKey)
+
+    if bucket:
+      for i, kv in enumerate(bucket):
+        k, v = kv
+        if key == k:
+          return v
     
-  def get(self,num):
-    print(self.map[num])
+    return None
