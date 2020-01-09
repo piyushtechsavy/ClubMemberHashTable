@@ -20,6 +20,8 @@ class ApplicationDriver:
     outputFile = open("outputPS8.txt", "w")
     outputFile.write("Successfully inserted %d applications into the system.\n" %(count));
     outputFile.close()
+
+    self.memberMap.print()
     
 
   def readAndProcessPromptsFile(self):
@@ -31,17 +33,44 @@ class ApplicationDriver:
         self.memRef(line)
       elif line.startswith("appStatus"):
         self.appStatus()
+    
+    promptsFile.close()
 
-    member = self.memberMap.getAppDetails("Deepak Prasad")
 
+  def memRef(self,refString):
+    memberRef = refString.replace("memberRef:","").strip()
 
-  def memRef(self,line):
-    print("memRef")
+    outputFile = open("outputPS8.txt", "a")
+    outputFile.write("---------- Member reference by "+ memberRef +" ----------\n")
+
+    for key in self.memberMap.keys:
+      member = self.memberMap.getAppDetails(key)
+      if member.mRef == memberRef:
+        outputFile.write(member.memberInfo())
+    
+    outputFile.write("-------------------------------------\n")
+    outputFile.close()
+
 
   def appStatus(self):
-    print("appStatus")
+    applied = verified = approved = 0
+    for key in self.memberMap.keys:
+      member = self.memberMap.getAppDetails(key)
+      if member.status == "Applied":
+        applied = applied+1;
+      elif member.status == "Verified":
+        verified = verified + 1
+      elif member.status == "Approved":
+        approved = approved + 1  
+    
+    outputFile = open("outputPS8.txt", "a")
+    outputFile.write("---------- Application Status ----------\n")
+    outputFile.write("Applied: %d\n" %(applied))
+    outputFile.write("Verified: %d\n" %(verified))
+    outputFile.write("Approved: %d\n" %(approved))
+    outputFile.write("-------------------------------------\n")
+    outputFile.close()
 
-  
   def updateAppDetails(self, updateString):
     memberDataList = updateString.replace("Update:","").split("/")
 
