@@ -1,5 +1,5 @@
 from member import Member
-from hashtable import MemberHashTable
+from memberhashtable import MemberHashTable
 
 class ApplicationDriver:
   def __init__(self):
@@ -20,8 +20,6 @@ class ApplicationDriver:
     outputFile = open("outputPS8.txt", "w")
     outputFile.write("Successfully inserted %d applications into the system.\n" %(count));
     outputFile.close()
-
-    self.memberMap.print()
     
 
   def readAndProcessPromptsFile(self):

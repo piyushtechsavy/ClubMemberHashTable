@@ -1,5 +1,5 @@
 class MemberHashTable:
-  def __init__(self,size=100):
+  def __init__(self,size=500):
     self.map = [None]*size
     self.size = size
     self.keys = []
@@ -13,6 +13,12 @@ class MemberHashTable:
 
   def initializeHash(self):
     self.map=[None]*self.size
+    self.keys = []
+
+  def destroyHash(self):
+    self.map.clear()
+    self.keys = []
+
   
   def insertAppDetails(self,member):
     key_exists = False
